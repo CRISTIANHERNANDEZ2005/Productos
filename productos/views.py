@@ -9,7 +9,6 @@ from .models import Producto
 from .serializers import (
     ProductoSerializer, 
     ProductoListSerializer, 
-    ProductoCreateSerializer,
     ProductoUpdateSerializer
 )
 
@@ -36,8 +35,6 @@ class ProductoViewSet(viewsets.ModelViewSet):
         """Retorna el serializador apropiado según la acción"""
         if self.action == 'list':
             return ProductoListSerializer
-        elif self.action == 'create':
-            return ProductoCreateSerializer
         elif self.action in ['update', 'partial_update']:
             return ProductoUpdateSerializer
         return ProductoSerializer
@@ -160,3 +157,12 @@ class ProductoViewSet(viewsets.ModelViewSet):
             {'mensaje': 'Producto desactivado correctamente'},
             status=status.HTTP_204_NO_CONTENT
         )
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        producto = serializer.save()
+        from .serializers import ProductoSerializer
+        read_serializer = ProductoSerializer(producto)
+        headers = self.get_success_headers(serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)

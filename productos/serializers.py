@@ -29,14 +29,6 @@ class ProductoListSerializer(serializers.ModelSerializer):
         model = Producto
         fields = ['id', 'codigo_producto', 'nombre', 'categoria', 'precio', 'stock', 'estado_stock', 'activo', 'fecha_creacion']
 
-class ProductoCreateSerializer(serializers.ModelSerializer):
-    """Serializador específico para crear productos"""
-    
-    class Meta:
-        model = Producto
-        fields = ['nombre', 'descripcion', 'precio', 'stock', 'categoria']
-        read_only_fields = ('codigo_producto', 'fecha_creacion', 'fecha_actualizacion')
-
 class ProductoUpdateSerializer(serializers.ModelSerializer):
     """Serializador específico para actualizar productos"""
     

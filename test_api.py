@@ -9,7 +9,7 @@ import json
 import time
 
 # Configuración
-BASE_URL = "https://productos-wgge.onrender.com/api"
+BASE_URL = "https://productos-is2a.onrender.com/api"
 HEADERS = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
