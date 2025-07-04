@@ -9,7 +9,7 @@ import json
 import time
 
 # Configuración
-BASE_URL = "http://localhost:8000/api"
+BASE_URL = "https://productos-wgge.onrender.com/api"
 HEADERS = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
